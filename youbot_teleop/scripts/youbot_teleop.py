@@ -29,7 +29,7 @@ TOPIC_J5_CMD = '/youbot/arm_joint_5_position_controller/command'
 TOPIC_FL_CMD = '/youbot/gripper_finger_joint_l_position_controller/command'
 TOPIC_FR_CMD = '/youbot/gripper_finger_joint_r_position_controller/command'
 
-TOPIC_BASE_PLANAR = '/cmd_vel'
+TOPIC_BASE_PLANAR = '/youbot/cmd_vel'
 
 TOPIC_J1_STT = '/youbot/arm_joint_1_position_controller/state'
 TOPIC_J2_STT = '/youbot/arm_joint_2_position_controller/state'
@@ -40,7 +40,7 @@ TOPIC_J5_STT = '/youbot/arm_joint_5_position_controller/state'
 TOPIC_FL_STT = '/youbot/gripper_finger_joint_l_position_controller/state'
 TOPIC_FR_STT = '/youbot/gripper_finger_joint_r_position_controller/state'
 
-TOPIC_ODOM = '/odom'
+TOPIC_ODOM = '/youbot/odom'
 
 DEFAULT_SPEED_LIN = 0.3
 DEFAULT_SPEED_ANG = 0.4
