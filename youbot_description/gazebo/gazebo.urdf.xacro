@@ -1,18 +1,10 @@
 <?xml version="1.0"?>
-<robot xmlns:xacro="http://ros.org/wiki/xacro">
+<robot name="youbot" xmlns:xacro="http://ros.org/wiki/xacro">
 
-  <gazebo>
-    <plugin name="gazebo_ros_controller_manager" filename="libgazebo_ros_control.so">
-      <robotNamespace>/youbot</robotNamespace>
-    </plugin>
-
-    <plugin name="object_controller" filename="libgazebo_ros_planar_move.so">
-      <commandTopic>cmd_vel</commandTopic>
-      <odometryTopic>odom</odometryTopic>
-      <odometryFrame>odom</odometryFrame>
-      <odometryRate>20.0</odometryRate>
-      <robotBaseFrame>base_footprint</robotBaseFrame>
-    </plugin>
-  </gazebo>
+    <gazebo>
+        <plugin name="gazebo_ros_controller_manager" filename="libgazebo_ros_control.so">
+            <robotNamespace>/youbot</robotNamespace>
+        </plugin>
+    </gazebo>
 
 </robot>

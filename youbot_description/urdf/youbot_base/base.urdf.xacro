@@ -256,8 +256,6 @@
         <inertia  ixx="0.012411765597" ixy="-0.000711733678" ixz="0.00050272983" iyy="0.015218160428" iyz="-0.000004273467" izz="0.011763977943" />
       </inertial>
     </link>
-    <gazebo reference = "caster_link_br">
-    </gazebo>
 
     <joint name="wheel_joint_br" type="continuous">
       <axis xyz="0 1 0" />
@@ -288,8 +286,6 @@
         </geometry>
       </collision>
     </link>
-    <gazebo reference = "wheel_link_br">
-    </gazebo>
 
     <!-- base laser front -->
 
