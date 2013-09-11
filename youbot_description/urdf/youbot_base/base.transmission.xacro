@@ -1,0 +1,85 @@
+<?xml version="1.0"?>
+<robot name="youbot" xmlns:xacro="http://www.ros.org/wiki/xacro"> 
+
+  <property name="wheel_mechanical_reduction" value="${624/35 * 80/18}"/>
+  <property name="caster_mechanical_reduction" value="${624/35 * 80/18}"/>
+  <property name="" value="0.360"/>
+  
+  <xacro:macro name="youbot_base_transmission">
+    <!-- front left wheel -->
+    <transmission name="wheel_trans_fl">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="wheel_joint_fl"/>
+      <actuator name="wheel_motor_fl">
+        <hardwareInterface>EffortJointInterface</hardwareInterface>
+        <mechanicalReduction>${wheel_mechanical_reduction}</mechanicalReduction>
+      </actuator>
+    </transmission>
+
+    <transmission name="caster_trans_fl">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="caster_joint_fl"/>
+      <actuator name="caster_motor_fl">
+        <hardwareInterface>EffortJointInterface</hardwareInterface>
+        <mechanicalReduction>${caster_mechanical_reduction}</mechanicalReduction>
+      </actuator>
+    </transmission>
+
+    <!-- front right wheel -->
+    <transmission name="wheel_trans_fr">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="wheel_joint_fr"/>
+      <actuator name="wheel_motor_fr">
+        <hardwareInterface>EffortJointInterface</hardwareInterface>
+        <mechanicalReduction>${wheel_mechanical_reduction}</mechanicalReduction>
+      </actuator>
+    </transmission>
+
+    <transmission name="caster_trans_fr">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="caster_joint_fr"/>
+      <actuator name="caster_motor_fr">
+        <hardwareInterface>EffortJointInterface</hardwareInterface>
+        <mechanicalReduction>${caster_mechanical_reduction}</mechanicalReduction>
+      </actuator>
+    </transmission>
+
+    <!-- back left wheel -->
+    <transmission name="wheel_trans_bl">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="wheel_joint_bl"/>
+      <actuator name="wheel_motor_bl">
+        <hardwareInterface>EffortJointInterface</hardwareInterface>
+        <mechanicalReduction>${wheel_mechanical_reduction}</mechanicalReduction>
+      </actuator>
+    </transmission>
+
+    <transmission name="caster_trans_bl">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="caster_joint_bl"/>
+      <actuator name="caster_motor_bl">
+        <hardwareInterface>EffortJointInterface</hardwareInterface>
+        <mechanicalReduction>${caster_mechanical_reduction}</mechanicalReduction>
+      </actuator>
+    </transmission>
+
+    <!-- back right wheel -->
+    <transmission name="wheel_trans_br">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="wheel_joint_br"/>
+      <actuator name="wheel_motor_br">
+        <hardwareInterface>EffortJointInterface</hardwareInterface>
+        <mechanicalReduction>${wheel_mechanical_reduction}</mechanicalReduction>
+      </actuator>
+    </transmission>
+
+    <transmission name="caster_trans_br">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="caster_joint_br"/>
+      <actuator name="caster_motor_br">
+        <hardwareInterface>EffortJointInterface</hardwareInterface>
+        <mechanicalReduction>${caster_mechanical_reduction}</mechanicalReduction>
+      </actuator>
+    </transmission>
+  </xacro:macro>
+</robot>

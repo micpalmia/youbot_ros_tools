@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<launch>
+  
+  <node name="controller_spawner" pkg="controller_manager"
+    type="spawner" respawn="false" output="screen"
+    ns="/youbot" args="--namespace=/youbot
+        arm_joint_1_position_controller
+        arm_joint_2_position_controller
+        arm_joint_3_position_controller
+        arm_joint_4_position_controller
+        arm_joint_5_position_controller
+        gripper_finger_joint_l_position_controller
+        gripper_finger_joint_r_position_controller" />
+
+  <!--         
+        wheel_joint_fl_velocity_controller
+        wheel_joint_fr_velocity_controller
+        wheel_joint_bl_velocity_controller
+        wheel_joint_br_velocity_controller
+        caster_joint_fl_position_controller
+        caster_joint_fr_position_controller
+        caster_joint_bl_position_controller
+        caster_joint_br_position_controller
+  -->
+
+  <!-- Load joint controller configurations from YAML file to parameter server -->
+  <rosparam file="$(find youbot_control)/config/youbot_control.yaml" command="load" /> 
+
+</launch>
+
+

@@ -1,0 +1,42 @@
+<package>
+  <description brief="youbot_description">
+
+     youbot_description
+
+  </description>
+  <author>Alexey Zakharov, Sebastian Blumenthal</author>
+  <license>LGPL, BSD</license>
+  <review status="unreviewed" notes=""/>
+  <url>http://ros.org/wiki/youbot_description</url>
+  <depend package="robot_state_publisher"/>
+  <depend package="urdf"/>
+  <depend package="trajectory_msgs"/>
+  <depend package="brics_actuator"/> <!--BRICS interface messages, version 0.1-->
+  <depend package="nav_msgs"/>
+  <depend package="pr2_controller_interface"/>
+  <depend package="pluginlib"/>
+  <depend package="control_toolbox"/>
+  <depend package="pr2_controllers_msgs" />
+  <depend package="pr2_mechanism_model"/>
+  <depend package="realtime_tools" />
+  <depend package="orocos_kdl"/>
+  <depend package="sensor_msgs"/>
+  <depend package="control_msgs"/>
+  <depend package="actionlib"/>
+  <depend package="youbot_common"/>
+  <depend package="pr2_hardware_interface"/>
+  <depend package="pr2_controller_interface"/>
+  <depend package="pr2_mechanism_msgs" />
+  <depend package="pr2_controller_manager"/>
+  <depend package="ethercat_hardware"/>
+
+  <export>
+    <pr2_controller_interface plugin="${prefix}/controller_plugins.xml" />  
+  </export>
+  <export>
+    <cpp cflags="-I${prefix}/include" />
+  </export>
+
+</package>
+
+
