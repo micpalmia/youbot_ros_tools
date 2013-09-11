@@ -4,6 +4,7 @@
   <xacro:macro name="youbot_base_gazebo">
     <gazebo>
       <plugin name="object_controller" filename="libgazebo_ros_planar_move.so">
+        <robotNamespace>/youbot</robotNamespace>
         <commandTopic>cmd_vel</commandTopic>
         <odometryTopic>odom</odometryTopic>
         <odometryFrame>odom</odometryFrame>
@@ -27,7 +28,7 @@
       </plugin>
       <canonicalBody>base_footprint</canonicalBody>
     </gazebo>
-    -->
-  </xacro:macro>
+  -->
+</xacro:macro>
 
 </robot>
