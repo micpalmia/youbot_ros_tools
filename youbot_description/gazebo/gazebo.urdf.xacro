@@ -2,7 +2,7 @@
 <robot name="youbot" xmlns:xacro="http://ros.org/wiki/xacro">
 
     <gazebo>
-        <plugin name="gazebo_ros_controller_manager" filename="libgazebo_ros_control.so">
+        <plugin name="gazebo_ros_controller" filename="libgazebo_ros_control.so">
             <robotNamespace>/youbot</robotNamespace>
         </plugin>
     </gazebo>
