@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<robot name="youbot" xmlns:xacro="http://ros.org/wiki/xacro">
+
+    <xacro:macro name="youbot_plate_gazebo" params="name">
+
+        <gazebo reference="${name}_link">
+            <gravity>true</gravity>
+            <selfCollide>false</selfCollide>
+        </gazebo>
+
+    </xacro:macro>
+
+</robot>

@@ -1,8 +1,5 @@
 <?xml version="1.0"?>
-<robot xmlns:sensor="http://playerstage.sourceforge.net/gazebo/xmlschema/#sensor"
-	xmlns:controller="http://playerstage.sourceforge.net/gazebo/xmlschema/#controller"
-	xmlns:interface="http://playerstage.sourceforge.net/gazebo/xmlschema/#interface"
-	xmlns:xacro="http://ros.org/wiki/xacro">
+<robot name="youbot" xmlns:xacro="http://ros.org/wiki/xacro">
 
 	<include filename="$(find youbot_description)/urdf/youbot_gripper/gripper.gazebo.xacro" />
 	<include filename="$(find youbot_description)/urdf/youbot_gripper/gripper.transmission.xacro" />
@@ -41,8 +38,6 @@
 				</geometry>
 			</collision>
 		</link>
-		<gazebo reference = "${name}_palm_link">
-		</gazebo>
 <!--
 		<link name="${name}_camera_collision_box_link">
 			<collision>
@@ -95,8 +90,6 @@
 			</geometry>
 		</collision>
 	</link>
-	<gazebo reference = "${name}_finger_link_l">
-	</gazebo>
 
 	<joint name="${name}_finger_joint_r" type="prismatic">
 		<origin xyz="0.046 -0.010 0.003" rpy="0 ${M_PI / 2} 0" />
@@ -130,8 +123,6 @@
 			</geometry>
 		</collision>
 	</link>
-	<gazebo reference = "${name}_finger_link_r">
-	</gazebo>
 
 	<!-- asus xtion camera
 	<xacro:asus_xtion_camera name="xtion" parent="${name}_palm_link" tilt="0.0">

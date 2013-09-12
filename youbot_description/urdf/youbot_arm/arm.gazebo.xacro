@@ -1,37 +1,36 @@
 <?xml version="1.0"?>
-
 <robot name="youbot" xmlns:xacro="http://ros.org/wiki/xacro">
 
 	<xacro:macro name="youbot_arm_gazebo" params="name">
-		<gazebo>
-			<link name="${name}_link_0">
-				<gravity>false</gravity>
-			</link>	
+		<gazebo reference="${name}_link_0">
+			<gravity>true</gravity>
+			<selfCollide>true</selfCollide>
 		</gazebo>
 
 		<gazebo reference="${name}_link_1">
-			<gravity>false</gravity>
+			<gravity>true</gravity>
+			<selfCollide>true</selfCollide>
 
 		</gazebo>
 
 		<gazebo reference="${name}_link_2">
-			<gravity>false</gravity>
-
+			<gravity>true</gravity>
+			<selfCollide>true</selfCollide>
 		</gazebo>
 
 		<gazebo reference="${name}_link_3">
-			<gravity>false</gravity>
-
+			<gravity>true</gravity>
+			<selfCollide>true</selfCollide>
 		</gazebo>
 
 		<gazebo reference="${name}_link_4">
-			<gravity>false</gravity>
-
+			<gravity>true</gravity>
+			<selfCollide>true</selfCollide>
 		</gazebo>
 
 		<gazebo reference="${name}_link_5">
-			<gravity>false</gravity>
-
+			<gravity>true</gravity>
+			<selfCollide>true</selfCollide>
 		</gazebo>
 
 	</xacro:macro>

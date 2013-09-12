@@ -13,6 +13,11 @@
       </plugin>
     </gazebo>
 
+    <gazebo reference="${name}_footprint">
+      <gravity>true</gravity>
+      <selfCollide>true</selfCollide>
+    </gazebo>
+
     <!-- old position controller -->
     <!--
       <plugin name="p3d_base_controller" filename="libgazebo_ros_p3d.so">

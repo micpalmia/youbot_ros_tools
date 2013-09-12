@@ -1,6 +1,8 @@
 <?xml version="1.0"?>
 <robot name="youbot" xmlns:xacro="http://www.ros.org/wiki/xacro"> 
 
+	<include filename="$(find youbot_description)/urdf/youbot_plate/plate.gazebo.xacro" />
+
 	<xacro:macro name="youbot_plate" params="parent name *origin">
 
 		<!-- joint between arm_7_link and sdh_palm_link -->
@@ -31,6 +33,8 @@
 				</geometry>
 			</collision>
 		</link>
+
+		<xacro:youbot_plate_gazebo name="${name}" />
 	</xacro:macro>
 
 </robot>
