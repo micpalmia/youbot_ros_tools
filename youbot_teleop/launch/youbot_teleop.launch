@@ -1,0 +1,11 @@
+<launch>
+
+  <arg name="ns" default="/youbot" />
+
+  <group ns="$(arg ns)">
+    <node name="youbot_teleop" pkg="youbot_teleop"
+      type="youbot_teleop.py" respawn="false" output="screen"
+      args="--ns $(arg ns)" />
+  </group>
+
+</launch>

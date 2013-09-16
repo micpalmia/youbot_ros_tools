@@ -12,6 +12,8 @@ Type help for a list of commands, and help <command> for the usage.
 import cmd
 import rospy
 import math
+import argparse
+import sys
 from std_msgs.msg import Float64 
 from geometry_msgs.msg import Twist
 from control_msgs.msg import JointControllerState
@@ -20,27 +22,27 @@ from nav_msgs.msg import Odometry
 # Global constants
 PI = 3.1415926535897931
 
-TOPIC_J1_CMD = '/youbot/arm_joint_1_position_controller/command'
-TOPIC_J2_CMD = '/youbot/arm_joint_2_position_controller/command'
-TOPIC_J3_CMD = '/youbot/arm_joint_3_position_controller/command'
-TOPIC_J4_CMD = '/youbot/arm_joint_4_position_controller/command'
-TOPIC_J5_CMD = '/youbot/arm_joint_5_position_controller/command'
+TOPIC_J1_CMD = '/arm_joint_1_position_controller/command'
+TOPIC_J2_CMD = '/arm_joint_2_position_controller/command'
+TOPIC_J3_CMD = '/arm_joint_3_position_controller/command'
+TOPIC_J4_CMD = '/arm_joint_4_position_controller/command'
+TOPIC_J5_CMD = '/arm_joint_5_position_controller/command'
 
-TOPIC_FL_CMD = '/youbot/gripper_finger_joint_l_position_controller/command'
-TOPIC_FR_CMD = '/youbot/gripper_finger_joint_r_position_controller/command'
+TOPIC_FL_CMD = '/gripper_finger_joint_l_position_controller/command'
+TOPIC_FR_CMD = '/gripper_finger_joint_r_position_controller/command'
 
-TOPIC_BASE_PLANAR = '/youbot/cmd_vel'
+TOPIC_BASE_PLANAR = '/cmd_vel'
 
-TOPIC_J1_STT = '/youbot/arm_joint_1_position_controller/state'
-TOPIC_J2_STT = '/youbot/arm_joint_2_position_controller/state'
-TOPIC_J3_STT = '/youbot/arm_joint_3_position_controller/state'
-TOPIC_J4_STT = '/youbot/arm_joint_4_position_controller/state'
-TOPIC_J5_STT = '/youbot/arm_joint_5_position_controller/state'
+TOPIC_J1_STT = '/arm_joint_1_position_controller/state'
+TOPIC_J2_STT = '/arm_joint_2_position_controller/state'
+TOPIC_J3_STT = '/arm_joint_3_position_controller/state'
+TOPIC_J4_STT = '/arm_joint_4_position_controller/state'
+TOPIC_J5_STT = '/arm_joint_5_position_controller/state'
 
-TOPIC_FL_STT = '/youbot/gripper_finger_joint_l_position_controller/state'
-TOPIC_FR_STT = '/youbot/gripper_finger_joint_r_position_controller/state'
+TOPIC_FL_STT = '/gripper_finger_joint_l_position_controller/state'
+TOPIC_FR_STT = '/gripper_finger_joint_r_position_controller/state'
 
-TOPIC_ODOM = '/youbot/odom'
+TOPIC_ODOM = '/odom'
 
 DEFAULT_SPEED_LIN = 0.3
 DEFAULT_SPEED_ANG = 0.4
@@ -156,33 +158,33 @@ class CommandYouBot(cmd.Cmd):
         rospy.init_node('youbot_teleop')
         
         # command publishers
-        self.pubj1 = rospy.Publisher(TOPIC_J1_CMD, Float64)
-        self.pubj2 = rospy.Publisher(TOPIC_J2_CMD, Float64)
-        self.pubj3 = rospy.Publisher(TOPIC_J3_CMD, Float64)
-        self.pubj4 = rospy.Publisher(TOPIC_J4_CMD, Float64)
-        self.pubj5 = rospy.Publisher(TOPIC_J5_CMD, Float64)
+        self.pubj1 = rospy.Publisher(NS+TOPIC_J1_CMD, Float64)
+        self.pubj2 = rospy.Publisher(NS+TOPIC_J2_CMD, Float64)
+        self.pubj3 = rospy.Publisher(NS+TOPIC_J3_CMD, Float64)
+        self.pubj4 = rospy.Publisher(NS+TOPIC_J4_CMD, Float64)
+        self.pubj5 = rospy.Publisher(NS+TOPIC_J5_CMD, Float64)
 
-        self.pubfl = rospy.Publisher(TOPIC_FL_CMD, Float64)
-        self.pubfr = rospy.Publisher(TOPIC_FR_CMD, Float64)
+        self.pubfl = rospy.Publisher(NS+TOPIC_FL_CMD, Float64)
+        self.pubfr = rospy.Publisher(NS+TOPIC_FR_CMD, Float64)
 
-        self.pubb = rospy.Publisher(TOPIC_BASE_PLANAR, Twist)
+        self.pubb = rospy.Publisher(NS+TOPIC_BASE_PLANAR, Twist)
 
         # ROS topics states subscribers
-        rospy.Subscriber(TOPIC_J1_STT, JointControllerState,
+        rospy.Subscriber(NS+TOPIC_J1_STT, JointControllerState,
                 callback_joint, (self.arm_pose, 0))
-        rospy.Subscriber(TOPIC_J2_STT, JointControllerState,
+        rospy.Subscriber(NS+TOPIC_J2_STT, JointControllerState,
                 callback_joint, (self.arm_pose, 1))
-        rospy.Subscriber(TOPIC_J3_STT, JointControllerState,
+        rospy.Subscriber(NS+TOPIC_J3_STT, JointControllerState,
                 callback_joint, (self.arm_pose, 2))
-        rospy.Subscriber(TOPIC_J4_STT, JointControllerState,
+        rospy.Subscriber(NS+TOPIC_J4_STT, JointControllerState,
                 callback_joint, (self.arm_pose, 3))
-        rospy.Subscriber(TOPIC_J5_STT, JointControllerState,
+        rospy.Subscriber(NS+TOPIC_J5_STT, JointControllerState,
                 callback_joint, (self.arm_pose, 4))
-        rospy.Subscriber(TOPIC_FL_STT, JointControllerState,
+        rospy.Subscriber(NS+TOPIC_FL_STT, JointControllerState,
                 callback_joint, (self.gripper_pose, 0))
-        rospy.Subscriber(TOPIC_FR_STT, JointControllerState,
+        rospy.Subscriber(NS+TOPIC_FR_STT, JointControllerState,
                 callback_joint, (self.gripper_pose, 1))
-        rospy.Subscriber(TOPIC_ODOM, Odometry, 
+        rospy.Subscriber(NS+TOPIC_ODOM, Odometry, 
                 callback_odom, self.odom)
         
         # various dicts containing default values and description
@@ -299,6 +301,17 @@ class CommandYouBot(cmd.Cmd):
         return True
 
 def main():
+    # get the namespace for the robot to be operated
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--ns", help="namespace in which the robot to be controlled is running")
+    args = parser.parse_args(rospy.myargv()[1:])
+
+    global NS
+    if args.ns:
+        NS = args.ns
+    else:
+        NS = '/youbot'
+
     cy = CommandYouBot()
     cy.cmdloop()
 
