@@ -47,7 +47,7 @@ roslaunch youbot_teleop youbot_teleop.launch ns:=/youbot1
 The wiki page about [understanding launch and namespaces][6] gives more insight in this direction.
 
 ## Credits
-The Xacro URDF description and the meshes for the robot has been taken from the WPI's [youbot_description][4] package. A lot of the code for this repository has been written by [@Arn-O][5].
+The Xacro URDF description and the meshes for the robot have been taken from the WPI's [youbot_description][4] package. A lot of the code for this repository has been written by [@Arn-O][5].
 
 [1]: http://www.youbot-store.com/
 [2]: http://wiki.ros.org/catkin
