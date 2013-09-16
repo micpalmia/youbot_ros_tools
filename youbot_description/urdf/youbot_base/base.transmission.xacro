@@ -16,15 +16,6 @@
       </actuator>
     </transmission>
 
-    <transmission name="caster_trans_fl">
-      <type>transmission_interface/SimpleTransmission</type>
-      <joint name="caster_joint_fl"/>
-      <actuator name="caster_motor_fl">
-        <hardwareInterface>EffortJointInterface</hardwareInterface>
-        <mechanicalReduction>${caster_mechanical_reduction}</mechanicalReduction>
-      </actuator>
-    </transmission>
-
     <!-- front right wheel -->
     <transmission name="wheel_trans_fr">
       <type>transmission_interface/SimpleTransmission</type>
@@ -32,15 +23,6 @@
       <actuator name="wheel_motor_fr">
         <hardwareInterface>EffortJointInterface</hardwareInterface>
         <mechanicalReduction>${wheel_mechanical_reduction}</mechanicalReduction>
-      </actuator>
-    </transmission>
-
-    <transmission name="caster_trans_fr">
-      <type>transmission_interface/SimpleTransmission</type>
-      <joint name="caster_joint_fr"/>
-      <actuator name="caster_motor_fr">
-        <hardwareInterface>EffortJointInterface</hardwareInterface>
-        <mechanicalReduction>${caster_mechanical_reduction}</mechanicalReduction>
       </actuator>
     </transmission>
 
@@ -54,15 +36,6 @@
       </actuator>
     </transmission>
 
-    <transmission name="caster_trans_bl">
-      <type>transmission_interface/SimpleTransmission</type>
-      <joint name="caster_joint_bl"/>
-      <actuator name="caster_motor_bl">
-        <hardwareInterface>EffortJointInterface</hardwareInterface>
-        <mechanicalReduction>${caster_mechanical_reduction}</mechanicalReduction>
-      </actuator>
-    </transmission>
-
     <!-- back right wheel -->
     <transmission name="wheel_trans_br">
       <type>transmission_interface/SimpleTransmission</type>
@@ -73,13 +46,5 @@
       </actuator>
     </transmission>
 
-    <transmission name="caster_trans_br">
-      <type>transmission_interface/SimpleTransmission</type>
-      <joint name="caster_joint_br"/>
-      <actuator name="caster_motor_br">
-        <hardwareInterface>EffortJointInterface</hardwareInterface>
-        <mechanicalReduction>${caster_mechanical_reduction}</mechanicalReduction>
-      </actuator>
-    </transmission>
   </xacro:macro>
 </robot>

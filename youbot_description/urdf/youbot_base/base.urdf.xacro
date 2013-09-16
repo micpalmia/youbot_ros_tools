@@ -88,12 +88,9 @@
     </link>		
 
     <!-- front left wheel -->		
-    <joint name="caster_joint_fl" type="continuous">
+    <joint name="caster_joint_fl" type="fixed">
       <origin xyz="${caster_offset_x} ${caster_offset_y} ${caster_offset_z}" rpy="0 0 0" />
       <axis xyz="0 0 1" />
-      <limit effort="${caster_joint_effort}" velocity="${caster_joint_velocity}"/> 
-      <dynamics damping="${caster_joint_damping}" friction="${caster_joint_friction}" />
-      <safety_controller k_velocity="${caster_joint_safety_k_velocity}" />
       <parent link="${name}_link"/>
       <child link="caster_link_fl" />
     </joint>
@@ -138,12 +135,9 @@
 
 
     <!-- front right wheel -->
-    <joint name="caster_joint_fr" type="continuous">
+    <joint name="caster_joint_fr" type="fixed">
       <origin xyz="${caster_offset_x} ${-caster_offset_y} ${caster_offset_z}" rpy="0 0 0" />
       <axis xyz="0 0 1" />
-      <limit effort="${caster_joint_effort}" velocity="${caster_joint_velocity}"/> 
-      <dynamics damping="${caster_joint_damping}" friction="${caster_joint_friction}" />
-      <safety_controller k_velocity="${caster_joint_safety_k_velocity}" />
       <parent link="${name}_link"/>
       <child link="caster_link_fr" />
     </joint>
@@ -189,12 +183,9 @@
 
 
     <!-- back left wheel -->
-    <joint name="caster_joint_bl" type="continuous">
+    <joint name="caster_joint_bl" type="fixed">
       <origin xyz="${-caster_offset_x} ${caster_offset_y} ${caster_offset_z}" rpy="0 0 0" />
       <axis xyz="0 0 1" />
-      <limit effort="${caster_joint_effort}" velocity="${caster_joint_velocity}"/>  
-      <dynamics damping="${caster_joint_damping}" friction="${caster_joint_friction}" />
-      <safety_controller k_velocity="${caster_joint_safety_k_velocity}" />
       <parent link="${name}_link"/>
       <child link="caster_link_bl" />
     </joint>
@@ -239,12 +230,9 @@
     </link>
 
     <!-- back right wheel -->
-    <joint name="caster_joint_br" type="continuous">
+    <joint name="caster_joint_br" type="fixed">
       <origin xyz="${-caster_offset_x} ${-caster_offset_y} ${caster_offset_z}" rpy="0 0 0" />
       <axis xyz="0 0 1" />
-      <limit effort="${caster_joint_effort}" velocity="${caster_joint_velocity}"/>  
-      <dynamics damping="${caster_joint_damping}" friction="${caster_joint_friction}" />
-      <safety_controller k_velocity="${caster_joint_safety_k_velocity}" />
       <parent link="${name}_link"/>
       <child link="caster_link_br" />
     </joint>
