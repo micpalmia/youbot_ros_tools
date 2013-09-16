@@ -32,6 +32,20 @@ roslaunch youbot_teleop youbot_teleop.launch
 ```
 Please type `help` for the list of available commands, or simply try `base_move` to test if the base correctly moves forward and `arm_move j1 3.15` to test if the first joints rotate correctly.
 
+Every one of the precedent commands allows a namespace-specific variation in case multiple robots have been spawned
+
+```
+roslaunch youbot_gazebo youbot_double.launch
+
+roslaunch youbot_control youbot_control.launch ns:=/youbot0
+roslaunch youbot_control youbot_control.launch ns:=/youbot1
+
+roslaunch youbot_teleop youbot_teleop.launch ns:=/youbot0
+roslaunch youbot_teleop youbot_teleop.launch ns:=/youbot1
+
+```
+The wiki page about [understanding launch and namespaces][6] gives more insight in this direction.
+
 ## Credits
 The Xacro URDF description and the meshes for the robot has been taken from the WPI's [youbot_description][4] package. A lot of the code for this repository has been written by [@Arn-O][5].
 
@@ -40,3 +54,4 @@ The Xacro URDF description and the meshes for the robot has been taken from the 
 [3]: http://gazebosim.org/wiki/Tutorials#ROS_Integration
 [4]: https://github.com/WPI-RAIL/youbot_description
 [5]: https://github.com/Arn-O
+[6]: https://github.com/Boanerghes/youbot_ros_tools/wiki/Understanding-launch-and-namespaces
