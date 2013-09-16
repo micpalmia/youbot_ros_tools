@@ -9,16 +9,18 @@
     <arg name="headless" value="false"/>
   </include>
 
+  <arg name="ns" default="/youbot" />
+
   <!-- spawn general model for the youbot -->
   <arg name="youbot_model" default="$(find youbot_description)/robots/youbot.urdf.xacro" />
   <param name="youbot_description" command="$(find xacro)/xacro.py '$(arg youbot_model)'" />
 
   <!-- spawn single robots-->
-  <group ns="/youbot">
+  <group ns="$(arg ns)">
     <include file="$(find youbot_gazebo)/launch/spawn_youbot.launch">
-      <arg name="name" value="youbot0"/>
+      <arg name="name" value="$(arg ns)"/>
       <arg name="pos_x" value="0.2"/>
-      <arg name="namespace_arg" value="youbot0"/>
+      <arg name="namespace_arg" value="$(arg ns)"/>
     </include>
   </group>
 
