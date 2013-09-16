@@ -6,7 +6,7 @@
 
   <property name="M_PI" value="3.14159"/>.
 
-  <include filename="$(find youbot_description)/urdf/sensors/asus_xtion_camera.gazebo.xacro" />
+  <xacro:include filename="$(find youbot_description)/urdf/sensors/asus_xtion_camera.gazebo.xacro" />
   
   <property name="eye_x_offset" value="0.03" />
   <property name="eye_y_offset" value="0.035" />

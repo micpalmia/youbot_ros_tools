@@ -5,7 +5,7 @@
       xmlns:xacro="http://ros.org/wiki/xacro">
   
 
-  <include filename="$(find youbot_description)/urdf/sensors/kinect_camera.gazebo.xacro"/>
+  <xacro:include filename="$(find youbot_description)/urdf/sensors/kinect_camera.gazebo.xacro"/>
 
   <xacro:macro name="kinect_camera" params="name parent *origin">
    <joint name="${name}_camera_joint" type="fixed">

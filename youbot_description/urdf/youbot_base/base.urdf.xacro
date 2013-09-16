@@ -2,10 +2,10 @@
 <robot name="youbot" xmlns:xacro="http://www.ros.org/wiki/xacro"> 
 
   <!-- sensors -->
-  <include filename="$(find youbot_description)/urdf/sensors/hokuyo_urg04_laser.urdf.xacro"/>
+  <xacro:include filename="$(find youbot_description)/urdf/sensors/hokuyo_urg04_laser.urdf.xacro"/>
 
-  <include filename="$(find youbot_description)/urdf/youbot_base/base.gazebo.xacro" />
-  <include filename="$(find youbot_description)/urdf/youbot_base/base.transmission.xacro" />
+  <xacro:include filename="$(find youbot_description)/urdf/youbot_base/base.gazebo.xacro" />
+  <xacro:include filename="$(find youbot_description)/urdf/youbot_base/base.transmission.xacro" />
 
   <!-- simplified box collision geometry for base -->
   <property name="base_size_x" value="0.570" />

@@ -7,16 +7,16 @@
   
   <!-- The following included files set up definitions of parts of the robot body -->
   <!-- misc common stuff? -->
-  <include filename="$(find youbot_description)/urdf/common.xacro" />
+  <xacro:include filename="$(find youbot_description)/urdf/common.xacro" />
   
   <!-- youbot base -->
-  <include filename="$(find youbot_description)/urdf/youbot_base/base.urdf.xacro" />
+  <xacro:include filename="$(find youbot_description)/urdf/youbot_base/base.urdf.xacro" />
  
   <!-- generic simulator_gazebo plugins for starting mechanism control, ros time, ros battery -->
-  <include filename="$(find youbot_description)/gazebo/gazebo.urdf.xacro" />
+  <xacro:include filename="$(find youbot_description)/gazebo/gazebo.urdf.xacro" />
   
   <!-- materials for visualization -->
-  <include filename="$(find youbot_description)/urdf/materials.urdf.xacro" />
+  <xacro:include filename="$(find youbot_description)/urdf/materials.urdf.xacro" />
 						     
 
   <!-- Now we can start using the macros included above to define the actual youbot -->
