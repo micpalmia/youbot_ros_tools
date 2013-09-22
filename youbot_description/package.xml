@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <package>
-  <name>test_abe</name>
+  <name>youbot_description</name>
   <version>0.0.0</version>
-  <description>The test_abe package</description>
+  <description>The youbot_description package</description>
 
   <!-- One maintainer tag required, multiple allowed, one person per tag --> 
   <!-- Example:  -->
@@ -19,7 +19,7 @@
   <!-- Url tags are optional, but mutiple are allowed, one per tag -->
   <!-- Optional attribute type can be: website, bugtracker, or repository -->
   <!-- Example: -->
-  <!-- <url type="website">http://ros.org/wiki/test_abe</url> -->
+  <!-- <url type="website">http://ros.org/wiki/youbot_description</url> -->
 
 
   <!-- Author tags are optional, mutiple are allowed, one per tag -->
