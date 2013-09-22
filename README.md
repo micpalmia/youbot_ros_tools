@@ -14,4 +14,18 @@ Use the hydro-revel for more stable and tested code.
 
 Compatible with ROS Hydro and Gazebo 1.9.
 
+### base only
+
+Launch display in rviz:
+
+```
+roslaunch youbot_description youbot_base_only.launch
+```
+
+Launch display in Gazebo:
+
+```
+roslaunch youbot_gazebo youbot_base_only.launch
+```
+
 [1]: http://www.youbot-store.com/youbot-developers/software/simulation/kuka-youbot-kinematics-dynamics-and-3d-model

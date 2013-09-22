@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!-- Refactored by Arn-O -->
+
+<robot name="youbot" xmlns:xacro="http://www.ros.org/wiki/xacro"> 
+  
+  <!-- base -->
+  <property name="base_mass" value="19.803" />
+  <property name="base_pose_x" value="0.000" />
+  <property name="base_pose_y" value="0.000" />
+  <property name="base_pose_z" value="0.084" />
+
+  <!-- wheels -->
+  <property name="wheel_mass" value="1.400" />
+  <property name="wheel_radius" value="0.050" />
+
+  <property name="wheel_fl_pose_x" value="0.228" />
+  <property name="wheel_fl_pose_y" value="-0.158" />
+  <property name="wheel_fl_pose_z" value="-0.034" />
+
+</robot>

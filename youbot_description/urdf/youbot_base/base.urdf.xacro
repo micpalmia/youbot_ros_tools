@@ -1,57 +1,80 @@
 <?xml version="1.0"?>
+<!-- Refactored by Arn-O -->
+
 <robot name="youbot" xmlns:xacro="http://www.ros.org/wiki/xacro"> 
 
-  <!-- sensors -->
-  <xacro:include filename="$(find youbot_description)/urdf/sensors/hokuyo_urg04_laser.urdf.xacro"/>
-
+  <!-- includes -->
+  <xacro:include filename="$(find youbot_description)/urdf/youbot_base/specs.urdf.xacro" />
   <xacro:include filename="$(find youbot_description)/urdf/youbot_base/base.gazebo.xacro" />
-  <xacro:include filename="$(find youbot_description)/urdf/youbot_base/base.transmission.xacro" />
 
-  <!-- simplified box collision geometry for base -->
-  <property name="base_size_x" value="0.570" />
-  <property name="base_size_y" value="0.360" />
-  <property name="base_size_z" value="0.100" />
-  <property name="base_mass" value="22.0" />
+  <xacro:macro name="youbot_base">
 
-  <property name="caster_offset_x" value="0.228"  />  
-  <property name="caster_offset_y" value="0.158"  />  
-  <property name="caster_offset_z" value="-0.034" />
-  <property name="caster_mass" value="0.1" />
+    <!-- ### links ### -->
+    <!-- base -->
+    <link name="base_link">
+      <inertial>
+        <mass value="${base_mass}" />
+        <origin xyz="${base_pose_x} ${base_pose_y} ${base_pose_z}" />
+        <inertia ixx="1.000" ixy="0.000" ixz="0.000" iyy="1.000" iyz="0.000" izz="1.000" />
+      </inertial>
 
-  <property name="wheel_offset_x" value="0.0"  />  
-  <property name="wheel_offset_y" value="0.0"  />  
-  <property name="wheel_offset_z" value="0.0" />
-  <property name="wheel_mass" value="0.4" />
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />  
+        <geometry>
+          <mesh filename="package://youbot_description/meshes/youbot_base/base_frame.dae"/>
+        </geometry> 
+      </visual>
+    </link>
 
-  <property name="wheel_radius" value="0.05" />
-  <property name="wheel_length" value="0.005" />
+    <!-- wheels -->
+    <!-- front left wheel -->
+    <link name="wheel_link_fl">
+      <inertial>
+        <mass value="${wheel_mass}" />
+        <inertia  ixx="0.010" ixy="0.000" ixz="0.000" iyy="0.010" iyz="0.000" izz="0.010" />
+      </inertial>
 
-  <property name="caster_joint_damping" value="1.0" />
-  <property name="caster_joint_friction" value="1.0" />
-  <property name="caster_joint_effort" value="30" />
-  <property name="caster_joint_velocity" value="10" />
-  <property name="caster_joint_safety_k_velocity" value="10.0" />
+      <visual>
+        <geometry>
+          <sphere radius="${wheel_radius}" />
+        </geometry>
+      </visual>
 
-  <property name="wheel_joint_damping" value="1.0" />
-  <property name="wheel_joint_friction" value="1.0" />
-  <property name="wheel_joint_effort" value="30" />
-  <property name="wheel_joint_velocity" value="10" />
-  <property name="wheel_joint_safety_k_velocity" value="10.0" />
+      <collision>
+        <geometry>
+          <sphere radius="${wheel_radius}" />
+        </geometry>
+      </collision>
+    </link>
 
-  <xacro:macro name="youbot_base" params="name">
+    <!-- ### joints ### -->
+    <joint name="wheel_fl_joint" type="fixed">
+      <origin xyz="${wheel_fl_pose_x} ${wheel_fl_pose_y} ${wheel_fl_pose_z}" rpy="0 0 0" />
+      <parent link="base_link"/>
+      <child link="wheel_link_fl" />
+    </joint>
 
+    <xacro:youbot_base_gazebo />
+
+  </xacro:macro>
+
+</robot>
+
+<!--
     <link name="${name}_footprint">
       <inertial>
         <mass value="0.0001" />
         <origin xyz="0 0 ${-base_size_z / 2.0}" rpy="0 0 0" />
         <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0" />
       </inertial>
+
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
           <box size="0.001 0.001 0.001" />
         </geometry>
       </visual>
+
       <collision>
         <origin xyz="0 0 ${-base_size_z / 2.0}" rpy="0 0 0" />
         <geometry>
@@ -59,12 +82,6 @@
         </geometry>
       </collision>
     </link>
-
-    <joint name="${name}_footprint_joint" type="fixed">
-      <origin xyz="0 0 0" rpy="0 0 0" />
-      <child link="${name}_link" />
-      <parent link="${name}_footprint"/>
-    </joint>
 
     <link name="${name}_link">
       <inertial>
@@ -72,47 +89,16 @@
         <origin xyz="0 0 0" />
         <inertia ixx="5.652232699207" ixy="-0.009719934438" ixz="1.293988226423" iyy="5.669473158652" iyz="-0.007379583694" izz="3.683196351726" />
       </inertial>
+
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0" />  
         <geometry>
           <mesh filename="package://youbot_description/meshes/youbot_base/base.dae"/>
         </geometry> 
       </visual>
-      <collision>
-        <origin xyz="0 0 0" rpy="0 0 0" />
-        <geometry>
-          <!--<box size="${base_size_x} ${base_size_y} ${base_size_z}" />-->
-          <mesh filename="package://youbot_description/meshes/youbot_base/base_convex.dae"/>
-        </geometry>
-      </collision>
-    </link>		
+    </link>	
 
-    <!-- front left wheel -->		
-    <joint name="caster_joint_fl" type="fixed">
-      <origin xyz="${caster_offset_x} ${caster_offset_y} ${caster_offset_z}" rpy="0 0 0" />
-      <axis xyz="0 0 1" />
-      <parent link="${name}_link"/>
-      <child link="caster_link_fl" />
-    </joint>
-
-    <link name="caster_link_fl">
-      <inertial>
-        <mass value="${caster_mass}" />
-        <origin xyz="0 0 0" />
-        <inertia  ixx="0.012411765597" ixy="-0.000711733678" ixz="0.00050272983" iyy="0.015218160428" iyz="-0.000004273467" izz="0.011763977943" />
-      </inertial>
-    </link>
-
-    <joint name="wheel_joint_fl" type="continuous">
-      <axis xyz="0 1 0" />
-      <limit effort="${wheel_joint_effort}" velocity="${wheel_joint_velocity}"/> 
-      <origin xyz="${wheel_offset_x} ${wheel_offset_y} ${wheel_offset_z}" rpy="0 0 0" />
-      <parent link="caster_link_fl"/>
-      <dynamics damping="${wheel_joint_damping}" friction="${wheel_joint_friction}" />
-      <safety_controller k_velocity="${wheel_joint_safety_k_velocity}" />
-      <child link="wheel_link_fl"/>
-    </joint>
-
+    <front left wheel >	
     <link name="wheel_link_fl">
       <inertial>
         <mass value="${wheel_mass}" />
@@ -133,45 +119,21 @@
       </collision>
     </link>
 
-
-    <!-- front right wheel -->
-    <joint name="caster_joint_fr" type="fixed">
-      <origin xyz="${caster_offset_x} ${-caster_offset_y} ${caster_offset_z}" rpy="0 0 0" />
-      <axis xyz="0 0 1" />
-      <parent link="${name}_link"/>
-      <child link="caster_link_fr" />
-    </joint>
-
-    <link name="caster_link_fr">
-      <inertial>
-        <mass value="${caster_mass}" />
-        <origin xyz="0 0 0" />
-        <inertia  ixx="0.012411765597" ixy="-0.000711733678" ixz="0.00050272983" iyy="0.015218160428" iyz="-0.000004273467" izz="0.011763977943" />
-      </inertial>
-    </link>
-
-    <joint name="wheel_joint_fr" type="continuous">
-      <axis xyz="0 1 0" />
-      <limit effort="${wheel_joint_effort}" velocity="${wheel_joint_velocity}"/> 
-      <dynamics damping="${wheel_joint_damping}" friction="${wheel_joint_friction}" />
-      <safety_controller k_velocity="${wheel_joint_safety_k_velocity}" />
-      <origin xyz="${wheel_offset_x} ${wheel_offset_y} ${wheel_offset_z}" rpy="0 0 0" />
-      <parent link="caster_link_fr"/>
-      <child link="wheel_link_fr"/>
-    </joint>
-
+    <front right wheel >
     <link name="wheel_link_fr">
       <inertial>
         <mass value="${wheel_mass}" />
         <origin xyz="0 0 0" />
         <inertia  ixx="0.012411765597" ixy="-0.000711733678" ixz="0.00050272983" iyy="0.015218160428" iyz="-0.000004273467" izz="0.011763977943" />
       </inertial>
+
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
           <mesh filename="package://youbot_description/meshes/youbot_base/front-right_wheel.dae" />
         </geometry>
       </visual>
+
       <collision>
         <origin xyz="0 0 0" rpy="${M_PI/2} 0 0" />
         <geometry>
@@ -180,47 +142,21 @@
       </collision>
     </link>
 
-
-
-    <!-- back left wheel -->
-    <joint name="caster_joint_bl" type="fixed">
-      <origin xyz="${-caster_offset_x} ${caster_offset_y} ${caster_offset_z}" rpy="0 0 0" />
-      <axis xyz="0 0 1" />
-      <parent link="${name}_link"/>
-      <child link="caster_link_bl" />
-    </joint>
-
-    <link name="caster_link_bl">
-      <inertial>
-        <mass value="${caster_mass}" />
-        <origin xyz="0 0 0" />
-        <inertia  ixx="0.012411765597" ixy="-0.000711733678" ixz="0.00050272983" iyy="0.015218160428" iyz="-0.000004273467" izz="0.011763977943" />
-      </inertial>
-    </link>
-
-    <joint name="wheel_joint_bl" type="continuous">
-      <axis xyz="0 1 0" />
-      <limit effort="10" velocity="10"/> 
-      <limit effort="${wheel_joint_effort}" velocity="${wheel_joint_velocity}"/>             		
-      <dynamics damping="${wheel_joint_damping}" friction="${wheel_joint_friction}" />
-      <safety_controller k_velocity="${wheel_joint_safety_k_velocity}" />
-      <origin xyz="${wheel_offset_x} ${wheel_offset_y} ${wheel_offset_z}" rpy="0 0 0" />
-      <parent link="caster_link_bl"/>
-      <child link="wheel_link_bl"/>
-    </joint>
-
+    <back left wheel  >
     <link name="wheel_link_bl">
       <inertial>
         <mass value="${wheel_mass}" />
         <origin xyz="0 0 0" />
         <inertia  ixx="0.012411765597" ixy="-0.000711733678" ixz="0.00050272983" iyy="0.015218160428" iyz="-0.000004273467" izz="0.011763977943" />
       </inertial>
+
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
           <mesh filename="package://youbot_description/meshes/youbot_base/back-left_wheel.dae" />
         </geometry>
       </visual>
+
       <collision>
         <origin xyz="0 0 0" rpy="${M_PI/2} 0 0" />
         <geometry>
@@ -229,44 +165,21 @@
       </collision>
     </link>
 
-    <!-- back right wheel -->
-    <joint name="caster_joint_br" type="fixed">
-      <origin xyz="${-caster_offset_x} ${-caster_offset_y} ${caster_offset_z}" rpy="0 0 0" />
-      <axis xyz="0 0 1" />
-      <parent link="${name}_link"/>
-      <child link="caster_link_br" />
-    </joint>
-
-    <link name="caster_link_br">
-      <inertial>
-        <mass value="${caster_mass}" />
-        <origin xyz="0 0 0" />
-        <inertia  ixx="0.012411765597" ixy="-0.000711733678" ixz="0.00050272983" iyy="0.015218160428" iyz="-0.000004273467" izz="0.011763977943" />
-      </inertial>
-    </link>
-
-    <joint name="wheel_joint_br" type="continuous">
-      <axis xyz="0 1 0" />
-      <limit effort="${wheel_joint_effort}" velocity="${wheel_joint_velocity}"/>  
-      <dynamics damping="${wheel_joint_damping}" friction="${wheel_joint_friction}" />
-      <safety_controller k_velocity="${wheel_joint_safety_k_velocity}" />
-      <origin xyz="${wheel_offset_x} ${wheel_offset_y} ${wheel_offset_z}" rpy="0 0 0" />
-      <parent link="caster_link_br"/>
-      <child link="wheel_link_br"/>
-    </joint>
-
+    < back right wheel  >
     <link name="wheel_link_br">
       <inertial>
         <mass value="${wheel_mass}" />
         <origin xyz="0 0 0" />
         <inertia  ixx="0.012411765597" ixy="-0.000711733678" ixz="0.00050272983" iyy="0.015218160428" iyz="-0.000004273467" izz="0.011763977943" />
       </inertial>
+
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
           <mesh filename="package://youbot_description/meshes/youbot_base/back-right_wheel.dae" />
         </geometry>
       </visual>
+
       <collision>
         <origin xyz="0 0 0" rpy="${M_PI/2} 0 0" />
         <geometry>
@@ -275,17 +188,14 @@
       </collision>
     </link>
 
-    <!-- base laser front -->
+    < ### joints ### >
+    <joint name="${name}_footprint_joint" type="fixed">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <child link="${name}_link" />
+      <parent link="${name}_footprint"/>
+    </joint>
 
-    <xacro:hokuyo_urg04_laser name="${name}_laser_front" parent="${name}" ros_topic="scan_front" update_rate="10" min_angle="-1.57" max_angle="1.57" >
-      <origin xyz="0.3 0 -0.03" rpy="3.15 3.15 0" />
-    </xacro:hokuyo_urg04_laser>
+	-->
 
     <!-- extensions -->
-    <xacro:youbot_base_gazebo />
-    <xacro:youbot_base_transmission />
 
-
-  </xacro:macro>
-
-</robot>
