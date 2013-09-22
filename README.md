@@ -1,6 +1,8 @@
 youbot_ros_tools
 ================
 
+NEW: refactor branch! In this branch will be applied the spec from [youbot-store][7]
+
 A [KUKA youBot][1] description package for ROS Hydro to be used for simulation in Gazebo 1.9.
 
 ## What's inside
@@ -55,3 +57,4 @@ The Xacro URDF description and the meshes for the robot have been taken from the
 [4]: https://github.com/WPI-RAIL/youbot_description
 [5]: https://github.com/Arn-O
 [6]: https://github.com/Boanerghes/youbot_ros_tools/wiki/Understanding-launch-and-namespaces
+[7]: http://www.youbot-store.com/youbot-developers/software/simulation/kuka-youbot-kinematics-dynamics-and-3d-model
