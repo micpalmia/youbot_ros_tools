@@ -36,4 +36,12 @@
   <property name="plate_pose_y" value="0.000" />
   <property name="plate_pose_z" value="0.046" />
 
+  <!-- arm -->
+  <property name="arm_base_mass" value="0.961" />
+
+  <property name="arm_base_pose_x" value="0.143" />
+  <property name="arm_base_pose_y" value="0.000" />
+  <property name="arm_base_pose_z" value="0.046" />
+
+
 </robot>

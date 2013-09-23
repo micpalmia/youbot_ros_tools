@@ -5,7 +5,7 @@
 
   <!-- includes -->
   <xacro:include filename="$(find youbot_description)/urdf/specs.urdf.xacro" />
-  <xacro:include filename="$(find youbot_description)/urdf/youbot_base/base.gazebo.xacro" />
+  <!-- xacro:include filename="$(find youbot_description)/urdf/youbot_base/base.gazebo.xacro" /-->
 
   <xacro:macro name="youbot_base">
 
