@@ -1,40 +1,29 @@
 <?xml version="1.0"?>
-<robot name="youbot" xmlns:xacro="http://www.ros.org/wiki/xacro"> 
+<!-- Refactored by Arn-O -->
+<robot name="youbot" xmlns:xacro="http://www.ros.org/wiki/xacro">   
+  <xacro:macro name="youbot_plate">
 
-	<xacro:include filename="$(find youbot_description)/urdf/youbot_plate/plate.gazebo.xacro" />
-
-	<xacro:macro name="youbot_plate" params="parent name *origin">
-
-		<!-- joint between arm_7_link and sdh_palm_link -->
-		<joint name="${name}_joint" type="fixed" >
-			<insert_block name="origin" />
-			<parent link="${parent}" />
-			<child link="${name}_link" />
-		</joint>
-
-		<link name="${name}_link">
-			<inertial>
-				<origin xyz="0 0 -0.025" rpy="0 0 0"/>
-				<mass value="1"/>
-				<inertia ixx="0.01" ixy="0" ixz="0" iyy="0.01" iyz="0" izz="0.01" />
-			</inertial>
+  <!-- ### links ### -->
+  <link name="plate_link">
+    <inertial>
+     <mass value="${plate_mass}"/>
+     <inertia ixx="0.01" ixy="0" ixz="0" iyy="0.01" iyz="0" izz="0.01" />
+    </inertial>
 			
-			<visual>
-				<origin xyz="0 0 -0.025" rpy="0 0 0" />
-				<geometry>
-					<mesh filename="package://youbot_description/meshes/youbot_plate/plate.dae" />
-				</geometry>
-			</visual>
-			
-			<collision>
-				<origin xyz="0 0 -0.025" rpy="0 0 0" />
-				<geometry>
-					<mesh filename="package://youbot_description/meshes/youbot_plate/plate_convex.dae" />
-				</geometry>
-			</collision>
-		</link>
+    <visual>
+      <geometry>
+        <mesh filename="package://youbot_description/meshes/youbot_plate/plate.dae" />
+      </geometry>
+    </visual>
+  </link>
 
-		<xacro:youbot_plate_gazebo name="${name}" />
-	</xacro:macro>
+  <!-- ### joints ### -->
+  <joint name="$plate_joint" type="fixed" >
+    <origin xyz="${plate_pose_x} ${plate_pose_y} ${plate_pose_z}" rpy="0 0 0" />
+    <parent link="base_link" />
+    <child link="plate_link" />
+   </joint>
+
+  </xacro:macro>
 
 </robot>

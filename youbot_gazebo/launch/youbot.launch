@@ -1,4 +1,10 @@
+<!-- Refactored by Arn-O -->
+
 <launch>
+
+  <!-- roslaunch arguments -->
+  <arg name="debug" default="false"/>
+  <arg name="gui" default="true"/>
 
   <include file="$(find gazebo_ros)/launch/empty_world.launch">
     <arg name="world_name" value="$(find youbot_gazebo)/worlds/empty.world"/>
@@ -9,19 +15,12 @@
     <arg name="headless" value="false"/>
   </include>
 
-  <arg name="ns" default="/youbot" />
+  <!-- Convert an xacro and put on parameter server -->
+  <param name="robot_description"
+    command="$(find xacro)/xacro.py $(find youbot_description)/robots/youbot.urdf.xacro" />
 
-  <!-- spawn general model for the youbot -->
-  <arg name="youbot_model" default="$(find youbot_description)/robots/youbot.urdf.xacro" />
-  <param name="youbot_description" command="$(find xacro)/xacro.py '$(arg youbot_model)'" />
-
-  <!-- spawn single robots-->
-  <group ns="$(arg ns)">
-    <include file="$(find youbot_gazebo)/launch/spawn_youbot.launch">
-      <arg name="name" value="$(arg ns)"/>
-      <arg name="pos_x" value="0.2"/>
-      <arg name="namespace_arg" value="$(arg ns)"/>
-    </include>
-  </group>
+  <!-- Spawn a robot into Gazebo -->
+  <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen"
+    args="-urdf -param robot_description -model youbot" />
 
 </launch>
