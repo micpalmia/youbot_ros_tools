@@ -34,6 +34,19 @@
       </visual>
     </link>
 
+    <link name="arm_2_link">
+      <inertial>
+        <mass value="${arm_2_link_mass}" />
+        <inertia ixx="0.010" ixy="0.000" ixz="0.000" iyy="0.010" iyz="0.000" izz="0.010" />
+      </inertial>
+
+      <visual>
+        <geometry>
+          <mesh filename="package://youbot_description/meshes/youbot_arm/arm_joint_2.dae"/>
+        </geometry> 
+      </visual>
+    </link>
+
     <!-- ### joints ### -->
     <joint name="arm_base_joint" type="fixed">
       <origin xyz="${arm_base_pose_x} ${arm_base_pose_y} ${arm_base_pose_z}" rpy="0 0 0" />
@@ -46,6 +59,13 @@
               rpy="${arm_1_link_orient_x} ${arm_1_link_orient_y} ${arm_1_link_orient_z}" />
       <parent link="arm_base_link"/>
       <child link="arm_1_link" />
+    </joint> 
+
+    <joint name="arm_2_joint" type="fixed">
+      <origin xyz="${arm_2_link_pose_x} ${arm_2_link_pose_y} ${arm_2_link_pose_z}"
+              rpy="${arm_2_link_orient_x} ${arm_2_link_orient_y} ${arm_2_link_orient_z}" />
+      <parent link="arm_1_link"/>
+      <child link="arm_2_link" />
     </joint> 
 
     <!-- extensions -->
