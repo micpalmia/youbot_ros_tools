@@ -43,5 +43,14 @@
   <property name="arm_base_pose_y" value="0.000" />
   <property name="arm_base_pose_z" value="0.046" />
 
+  <property name="arm_1_link_mass" value="1.390" />
+
+  <property name="arm_1_link_pose_x" value="0.024" />
+  <property name="arm_1_link_pose_y" value="0.000" />
+  <property name="arm_1_link_pose_z" value="0.115" />
+
+  <property name="arm_1_link_orient_z" value="${M_PI * (0 / 180)}" />
+  <property name="arm_1_link_orient_y" value="${M_PI * (0 / 180)}" />
+  <property name="arm_1_link_orient_x" value="${M_PI * (180 / 180)}" />
 
 </robot>

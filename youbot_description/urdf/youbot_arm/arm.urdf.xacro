@@ -21,13 +21,33 @@
       </visual>
     </link>
 
+    <link name="arm_1_link">
+      <inertial>
+        <mass value="${arm_1_link_mass}" />
+        <inertia ixx="0.010" ixy="0.000" ixz="0.000" iyy="0.010" iyz="0.000" izz="0.010" />
+      </inertial>
+
+      <visual>
+        <geometry>
+          <mesh filename="package://youbot_description/meshes/youbot_arm/arm_joint_1.dae"/>
+        </geometry> 
+      </visual>
+    </link>
+
     <!-- ### joints ### -->
     <joint name="arm_base_joint" type="fixed">
       <origin xyz="${arm_base_pose_x} ${arm_base_pose_y} ${arm_base_pose_z}" rpy="0 0 0" />
       <parent link="base_link"/>
       <child link="arm_base_link" />
     </joint>    		
-	
+
+    <joint name="arm_1_joint" type="fixed">
+      <origin xyz="${arm_1_link_pose_x} ${arm_1_link_pose_y} ${arm_1_link_pose_z}"
+              rpy="${arm_1_link_orient_x} ${arm_1_link_orient_y} ${arm_1_link_orient_z}" />
+      <parent link="arm_base_link"/>
+      <child link="arm_1_link" />
+    </joint> 
+
     <!-- extensions -->
     <!-- uncomment for adding the controllers -->
     <!-- xacro:youbot_arm_transmission /-->
