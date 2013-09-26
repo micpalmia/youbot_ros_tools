@@ -54,18 +54,20 @@
       <child link="arm_base_link" />
     </joint>    		
 
-    <joint name="arm_1_joint" type="fixed">
+    <joint name="arm_1_joint" type="revolute">
       <origin xyz="${arm_1_link_pose_x} ${arm_1_link_pose_y} ${arm_1_link_pose_z}"
-              rpy="${arm_1_link_orient_x} ${arm_1_link_orient_y} ${arm_1_link_orient_z}" />
+              rpy="${arm_1_link_orient_r} ${arm_1_link_orient_p} ${arm_1_link_orient_y}" />
       <parent link="arm_base_link"/>
       <child link="arm_1_link" />
+      <limit lower="-2.0" upper="2.0" effort="1000" velocity="3" />
     </joint> 
 
-    <joint name="arm_2_joint" type="fixed">
+    <joint name="arm_2_joint" type="revolute">
       <origin xyz="${arm_2_link_pose_x} ${arm_2_link_pose_y} ${arm_2_link_pose_z}"
-              rpy="${arm_2_link_orient_x} ${arm_2_link_orient_y} ${arm_2_link_orient_z}" />
+              rpy="${arm_2_link_orient_r} ${arm_2_link_orient_p} ${arm_2_link_orient_y}" />
       <parent link="arm_1_link"/>
       <child link="arm_2_link" />
+      <limit lower="-2.0" upper="2.0" effort="1000" velocity="3" />
     </joint> 
 
     <!-- extensions -->

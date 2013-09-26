@@ -49,9 +49,9 @@
   <property name="arm_1_link_pose_y" value="0.000" />
   <property name="arm_1_link_pose_z" value="0.115" />
 
-  <property name="arm_1_link_orient_z" value="${M_PI * (0 / 180)}" />
   <property name="arm_1_link_orient_y" value="${M_PI * (0 / 180)}" />
-  <property name="arm_1_link_orient_x" value="${M_PI * (180 / 180)}" />
+  <property name="arm_1_link_orient_p" value="${M_PI * (0 / 180)}" />
+  <property name="arm_1_link_orient_r" value="${M_PI * (180 / 180)}" />
 
   <property name="arm_2_link_mass" value="1.318" />
 
@@ -59,8 +59,8 @@
   <property name="arm_2_link_pose_y" value="0.000" />
   <property name="arm_2_link_pose_z" value="0.000" />
 
-  <property name="arm_2_link_orient_z" value="${M_PI * (0 / 180)}" />
-  <property name="arm_2_link_orient_y" value="${M_PI * (0 / 180)}" />
-  <property name="arm_2_link_orient_x" value="${M_PI * (0 / 180)}" />
+  <property name="arm_2_link_orient_y" value="${M_PI * (-90 / 180)}" />
+  <property name="arm_2_link_orient_p" value="${M_PI * (0 / 180)}" />
+  <property name="arm_2_link_orient_r" value="${M_PI * (90 / 180)}" />
 
 </robot>
