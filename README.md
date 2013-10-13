@@ -10,22 +10,9 @@ Use the hydro-revel for more stable and tested code.
 + fix the "joint issue" (joints are moving too slowly)
 + improve readability by keeping the official parameters in parameter files
 
-## Quick start
+## Link
 
-Compatible with ROS Hydro and Gazebo 1.9.
-
-### base only
-
-Launch display in rviz:
-
-```
-roslaunch youbot_description youbot_base_only.launch
-```
-
-Launch display in Gazebo:
-
-```
-roslaunch youbot_gazebo youbot_base_only.launch
-```
+This branch is currently developed in [this repo][2], before merging.
 
 [1]: http://www.youbot-store.com/youbot-developers/software/simulation/kuka-youbot-kinematics-dynamics-and-3d-model
+[2]: https://github.com/Arn-O/youbot_ros_tools
