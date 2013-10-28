@@ -10,6 +10,8 @@
   </include>
 
   <arg name="ns" default="/youbot" />
+  <!-- specify prefix for tf transforms -->
+  <param name="tf_prefix" value="youbot" />
 
   <!-- spawn general model for the youbot -->
   <arg name="youbot_model" default="$(find youbot_description)/robots/youbot.urdf.xacro" />
@@ -17,6 +19,8 @@
 
   <!-- spawn single robots-->
   <group ns="$(arg ns)">
+    <param name="tf_prefix" value="youbot" />
+
     <include file="$(find youbot_gazebo)/launch/spawn_youbot.launch">
       <arg name="name" value="$(arg ns)"/>
       <arg name="pos_x" value="0.2"/>
@@ -24,4 +28,8 @@
     </include>
   </group>
 
-</launch>
+  <!-- start tf publisher for laser scanner-->
+  <!-- TODO: should be replaced with a robot-wide tf publisher-->
+  <node name="tf_scanner" pkg="tf" type="static_transform_publisher" args="0.3 0 -0.03 0 0 0 youbot/base_link youbot/base_laser_front_link 40" />
+
+  </launch>

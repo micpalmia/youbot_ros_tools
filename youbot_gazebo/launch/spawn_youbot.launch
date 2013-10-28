@@ -10,12 +10,12 @@
   <param name="youbot_description" command="$(find xacro)/xacro.py '$(arg youbot_model)'" />
 
   <node name="spawn_robot" pkg="gazebo_ros" type="spawn_model"
-        args="-param youbot_description
-              -urdf
-              -x $(arg pos_x)
-              -y $(arg pos_y)
-              -z $(arg pos_z)
-              -model $(arg name)"
-        respawn="false" output="screen">
+    args="-param youbot_description
+    -urdf
+    -x $(arg pos_x)
+    -y $(arg pos_y)
+    -z $(arg pos_z)
+    -model $(arg name)"
+    respawn="false" output="screen">
   </node>
 </launch>

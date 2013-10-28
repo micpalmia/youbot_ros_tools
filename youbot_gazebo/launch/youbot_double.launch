@@ -13,16 +13,33 @@
   <arg name="youbot_model" default="$(find youbot_description)/robots/youbot.urdf.xacro" />
   <param name="youbot_description" command="$(find xacro)/xacro.py '$(arg youbot_model)'" />
 
+  <!-- YOUBOT0 -->
+
+  <param name="tf_prefix" value="youbot0" />
+
   <!-- spawn single robots-->
   <group ns="/youbot0">
+    <param name="tf_prefix" value="youbot0" />
+
     <include file="$(find youbot_gazebo)/launch/spawn_youbot.launch">
       <arg name="name" value="youbot0"/>
-      <arg name="pos_x" value="0.2"/>
+      <arg name="pos_x" value="-4.0"/>
+      <arg name="pos_y" value="2.0"/>
       <arg name="namespace_arg" value="youbot0"/>
     </include>
   </group>
 
+  <!-- start tf publisher for laser scanner-->
+  <!-- TODO: should be replaced with a robot-wide tf publisher-->
+  <node name="youbot0_tf_scanner" pkg="tf" type="static_transform_publisher" args="0.3 0 -0.03 0 0 0 youbot0/base_link youbot0/base_laser_front_link 40" />
+
+  <!-- YOUBOT1 -->
+
+  <param name="tf_prefix" value="youbot1" />
+
   <group ns="/youbot1">
+    <param name="tf_prefix" value="youbot1" />
+
     <include file="$(find youbot_gazebo)/launch/spawn_youbot.launch">
       <arg name="name" value="youbot1"/>
       <arg name="pos_x" value="1.5"/>
@@ -30,5 +47,8 @@
     </include>
   </group>
 
+  <!-- start tf publisher for laser scanner-->
+  <!-- TODO: should be replaced with a robot-wide tf publisher-->
+  <node name="youbot1_tf_scanner" pkg="tf" type="static_transform_publisher" args="0.3 0 -0.03 0 0 0 youbot1/base_link youbot1/base_laser_front_link 40" />
 
 </launch>
