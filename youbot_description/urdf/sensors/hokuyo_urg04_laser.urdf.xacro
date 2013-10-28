@@ -19,21 +19,21 @@
       </inertial>
       <visual>
       	<origin xyz="0 0 0" rpy="0 0 0" />
-	<geometry>
-		<mesh filename="package://youbot_description/meshes/sensors/hokuyo.dae" />
-	</geometry>
-	<material name="DarkGrey" />
-      </visual>
-			
-      <collision>
-		<origin xyz="0 0 0" rpy="0 0 0" />
-		<geometry>
-			<mesh filename="package://youbot_description/meshes/sensors/hokuyo_convex.dae" />
-			
-		</geometry>
-	</collision>
-    </link>
-    <!-- gazebo extensions -->
-    <xacro:hokuyo_urg04_laser_gazebo name="${name}" ros_topic="${ros_topic}" update_rate="${update_rate}" min_angle="${min_angle}" max_angle="${max_angle}" />
-  </xacro:macro>
+       <geometry>
+        <mesh filename="package://youbot_description/meshes/sensors/hokuyo.dae" />
+      </geometry>
+      <material name="DarkGrey" />
+    </visual>
+    
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+       <mesh filename="package://youbot_description/meshes/sensors/hokuyo_convex.dae" />
+       
+     </geometry>
+   </collision>
+ </link>
+ <!-- gazebo extensions -->
+ <xacro:hokuyo_urg04_laser_gazebo name="${name}" ros_topic="${ros_topic}" update_rate="${update_rate}" min_angle="${min_angle}" max_angle="${max_angle}" />
+</xacro:macro>
 </robot>

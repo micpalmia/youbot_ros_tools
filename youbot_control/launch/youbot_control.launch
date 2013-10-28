@@ -22,18 +22,5 @@
       arm_joint_5_position_controller
       gripper_finger_joint_l_position_controller
       gripper_finger_joint_r_position_controller" />
-    </group>
-  <!--         
-        wheel_joint_fl_velocity_controller
-        wheel_joint_fr_velocity_controller
-        wheel_joint_bl_velocity_controller
-        wheel_joint_br_velocity_controller
-        caster_joint_fl_position_controller
-        caster_joint_fr_position_controller
-        caster_joint_bl_position_controller
-        caster_joint_br_position_controller
-      -->
-
+  </group>
     </launch>
-
-

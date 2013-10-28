@@ -8,13 +8,14 @@
     <xacro:macro name="hokuyo_urg04_laser_gazebo" params="name ros_topic update_rate min_angle max_angle">
         <gazebo reference="${name}_link">
             <sensor name="${name}" type="ray">
+                <visualize>true</visualize>
                 <ray>
                     <scan>
                         <horizontal>
                             <samples>640</samples>
                             <resolution>1.0</resolution>
-                            <min_angle>${min_angle*180.0/M_PI}</min_angle>
-                            <max_angle>${max_angle*180.0/M_PI}</max_angle>
+                            <min_angle>${min_angle}</min_angle>
+                            <max_angle>${max_angle}</max_angle>
                         </horizontal>
                     </scan>
                     <range>
@@ -28,7 +29,7 @@
                     <alwaysOn>true</alwaysOn>
                     <updateRate>${update_rate}</updateRate>
                     <topicName>${ros_topic}</topicName>
-                    <frameName>/${name}_link</frameName>
+                    <frameName>${name}_link</frameName>
                     <interface:laser name="gazebo_ros_${name}_iface" />
                 </plugin>
             </sensor>

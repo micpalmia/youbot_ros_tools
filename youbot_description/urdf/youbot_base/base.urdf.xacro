@@ -278,7 +278,7 @@
     <!-- base laser front -->
 
     <xacro:hokuyo_urg04_laser name="${name}_laser_front" parent="${name}" ros_topic="scan_front" update_rate="10" min_angle="-1.57" max_angle="1.57" >
-      <origin xyz="0.3 0 -0.03" rpy="3.15 3.15 0" />
+      <origin xyz="0.3 0 -0.03" rpy="${M_PI} ${M_PI} ${M_PI}" />
     </xacro:hokuyo_urg04_laser>
 
     <!-- extensions -->
