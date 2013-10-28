@@ -1,0 +1,17 @@
+<package>
+  <description brief="youbot_2dnav">
+
+     youbot_2dnav
+
+  </description>
+  <author>Michele Palmia</author>
+  <license>BSD</license>
+  <review status="unreviewed" notes=""/>
+  <url>http://ros.org/wiki/youbot_2dnav</url>
+  <depend package="move_base"/>
+  <depend package="youbot_gazebo"/>
+  <depend package="youbot_description"/>
+
+</package>
+
+

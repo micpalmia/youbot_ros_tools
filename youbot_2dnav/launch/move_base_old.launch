@@ -1,0 +1,25 @@
+<launch>
+  <arg name="ns" default="youbot" />
+
+  <master auto="start"/>
+  
+  <group ns="$(arg ns)">
+    
+    <!-- Run the map server -->
+    <node name="map_server" pkg="map_server" type="map_server" args="$(find empty_room)/map/map.yaml"/>
+    
+    <!--- Run AMCL -->
+    <include file="../amcl_config/youbot_amcl.launch">
+      <arg name="ns" value="$(arg ns)" />
+    </include>
+    
+    <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen" args="cmd_vel:=$(arg ns)/cmd_vel">
+      <rosparam file="$(find youbot_2dnav)/config/costmap_common_params.yaml" command="load" ns="global_costmap" />
+      <rosparam file="$(find youbot_2dnav)/config/costmap_common_params.yaml" command="load" ns="local_costmap" />
+      <rosparam file="$(find youbot_2dnav)/config/local_costmap_params.yaml" command="load" />
+      <rosparam file="$(find youbot_2dnav)/config/global_costmap_params.yaml" command="load" />
+      <rosparam file="$(find youbot_2dnav)/config/base_local_planner_params.yaml" command="load" />
+    </node>
+
+  </group>
+</launch>
