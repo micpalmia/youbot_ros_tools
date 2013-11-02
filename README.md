@@ -4,12 +4,13 @@ youbot_ros_tools
 A [KUKA youBot][1] description package for ROS Hydro to be used for simulation in Gazebo 1.9.
 
 ## What's inside
-*youbot_ros_tools* is a [catkin][2] package and is divided in four parts, each of which groups a specific set of functionalities. Its structure reflects the one proposed in the Gazebo [ROS integration guidelines][3].
+*youbot_ros_tools* is a [catkin][2] package and is divided in five parts, each of which groups a specific set of functionalities. Its structure reflects the one proposed in the Gazebo [ROS integration guidelines][3].
 
 * **youbot_description** contains the Xacro URDF description of the robot, including the directives for Gazebo simulation, and the 3d meshes for all its parts. 
-* **youbot_gazebo** contains the launch files for different youbot configurations and world files.
+* **youbot_gazebo** contains the launch files for different youbot configurations and world files. It currently only contains the map for a completely empty room.
 * **youbot_control** provides configuration and launch files to spawn the robot controllers.
 * **youbot_teleop** includes a simple teleoperation script for moving the robot's base and arm. More about controlling multiple robots can be found later in the document.
+* **youbot_2dnav** includes the configuration and launchers to start the navigation module. 
 
 Even though this package is still under developement and contains some tradeoffs that limit its adherence to reality, we encourage you to try it, suggest improvements and raise issues.
 
