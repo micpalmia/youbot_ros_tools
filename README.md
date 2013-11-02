@@ -33,6 +33,13 @@ roslaunch youbot_teleop youbot_teleop.launch
 ```
 Please type `help` for the list of available commands, or simply try `base_move` to test if the base correctly moves forward and `arm_move j1 3.15` to test if the first joints rotate correctly.
 
+If all of the previous steps have been followed without modifying the launch files, the navigation stack can be started with
+
+```
+roslaunch youbot_2dnav move_base.launch
+```
+This command starts the map server, the amcl localization module and the move_base navigation module. The robot can thus be controlled passing messages to the move_base/goal topic.
+
 Every one of the precedent commands allows a namespace-specific variation in case multiple robots have been spawned
 
 ```
