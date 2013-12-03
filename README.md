@@ -4,12 +4,13 @@ youbot_ros_tools
 A [KUKA youBot][1] description package for ROS Hydro to be used for simulation in Gazebo 1.9.
 
 ## What's inside
-*youbot_ros_tools* is a [catkin][2] package and is divided in four parts, each of which groups a specific set of functionalities. Its structure reflects the one proposed in the Gazebo [ROS integration guidelines][3].
+*youbot_ros_tools* is a [catkin][2] package and is divided in five parts, each of which groups a specific set of functionalities. Its structure reflects the one proposed in the Gazebo [ROS integration guidelines][3].
 
 * **youbot_description** contains the Xacro URDF description of the robot, including the directives for Gazebo simulation, and the 3d meshes for all its parts. 
-* **youbot_gazebo** contains the launch files for different youbot configurations and world files.
+* **youbot_gazebo** contains the launch files for different youbot configurations and world files. It currently only contains the map for a completely empty room.
 * **youbot_control** provides configuration and launch files to spawn the robot controllers.
 * **youbot_teleop** includes a simple teleoperation script for moving the robot's base and arm. More about controlling multiple robots can be found later in the document.
+* **youbot_2dnav** includes the configuration and launchers to start the navigation module. 
 
 Even though this package is still under developement and contains some tradeoffs that limit its adherence to reality, we encourage you to try it, suggest improvements and raise issues.
 
@@ -31,6 +32,13 @@ If everything went as expected and neither screens showed errors, you can start 
 roslaunch youbot_teleop youbot_teleop.launch
 ```
 Please type `help` for the list of available commands, or simply try `base_move` to test if the base correctly moves forward and `arm_move j1 3.15` to test if the first joints rotate correctly.
+
+If all of the previous steps have been followed without modifying the launch files, the navigation stack can be started with
+
+```
+roslaunch youbot_2dnav move_base.launch
+```
+This command starts the [map server][7], the [amcl][8] localization module and the [move_base][9] navigation module. The robot can thus be controlled passing messages to the move_base/goal topic.
 
 Every one of the precedent commands allows a namespace-specific variation in case multiple robots have been spawned
 
@@ -55,3 +63,6 @@ The Xacro URDF description and the meshes for the robot have been taken from the
 [4]: https://github.com/WPI-RAIL/youbot_description
 [5]: https://github.com/Arn-O
 [6]: https://github.com/Boanerghes/youbot_ros_tools/wiki/Understanding-launch-and-namespaces
+[7]: http://wiki.ros.org/map_server
+[8]: http://wiki.ros.org/amcl
+[9]: http://wiki.ros.org/move_base
