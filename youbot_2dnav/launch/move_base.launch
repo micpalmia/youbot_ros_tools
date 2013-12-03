@@ -6,7 +6,7 @@
   <group ns="$(arg ns)">
     
     <!-- Run the map server -->
-    <node name="map_server" pkg="map_server" type="map_server" args="$(find empty_room)/map/map.yaml"/>
+    <node name="map_server" pkg="map_server" type="map_server" args="$(find youbot_gazebo)/worlds/EmptyRoom/occupancy/map.yaml"/>
     
     <!--- Run AMCL -->
     <include file="$(find youbot_2dnav)/amcl_config/youbot_amcl.launch">
